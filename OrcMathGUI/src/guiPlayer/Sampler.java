@@ -121,7 +121,7 @@ public class Sampler extends GUIApplication {
 			viewObjects.add(cb);
 			
 			
-			viewObjects.add(new Paper());
+			viewObjects.add(new Babies());
 		}
 		
 		public void mouseDragged(MouseEvent m) {
