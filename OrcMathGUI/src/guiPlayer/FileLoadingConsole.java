@@ -9,58 +9,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CatalogueMaker {
-	
-	private ArrayList<Babies> List;
-
-	public CatalogueMaker() {
-		List = new ArrayList<Babies>();
-		List.add(new Babies("john", "asian", "america", "male"));
-		List.add(new Babies("ssjdshtrubg", "white", "slkja", "female"));
-		List.add(new Babies("shawn", "black", "france", "transgender"));
-		List.add(new Babies("steve", "n/a", "n/a", "n/a"));
+public class FileLoadingConsole {
+	public static void main(String[] args){
+		
+		List<String> content = testFileLoading();
+		displayContent(content);
+		testSaveContent("test.csv");
 	}
 
-	public String getCSVContent() {
-		String data = "first_name, race, country origin, gender\n";
-		for(Babies c: List) {
-			data += c + "\n";
-		}
-		return data;
-		
-	}
-	public static void main(String[] args) {
-		int counter = 0;
-		Scanner n = new Scanner(System.in);
-		CatalogueMaker BabyStuff = new CatalogueMaker();
-		System.out.println(BabyStuff.getCSVContent());
-		BabyStuff.testSaveContent("test1.csv");
-		
-		/*System.out.println("Please enter: name ");
-		while(counter < 4) {
-			//System.out.println("Please enter: "+ field[counter]);
-		}*/
-	}
-	
-	public void addNewItem(String name, String race, String country, String gender) {
-		List.add(new Babies(name, race, country, gender));
-		System.out.println("Item added.");
-		getCSVContent();
-	}
-	
-	public void testSaveContent(String fileName) {
+	private static void testSaveContent(String fileName) {
 		try{    
-			FileWriter fw=new FileWriter(fileName);
-			for(Babies b: List) {
-				fw.write(b + "\n");
-			}   
+			FileWriter fw=new FileWriter(fileName);    
+			fw.write("This file was created programmatically.");    
 			fw.close();    
 			System.out.println("Success! File \""+fileName+"\" saved!");
 		}catch(IOException e){
 			System.out.println("An IOException was thrown. \nCheck to see that the directory where you tried to save the file actually exists.");
 		}    
 	}
-	
+
+	private static void displayContent(List<String> content) {
+		//print the content:
+		for(String item : content){
+
+			System.out.println(item);
+		}
+	}
+
 	private static List<String> testFileLoading() {
 		Scanner in = new Scanner(System.in);
 		String fileName = "";
@@ -93,5 +68,4 @@ public class CatalogueMaker {
 		in.close();
 		return content;
 	}
-
 }
