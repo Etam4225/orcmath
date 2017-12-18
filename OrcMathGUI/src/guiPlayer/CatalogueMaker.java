@@ -69,19 +69,16 @@ public class CatalogueMaker {
 		boolean opened = false;
 		while(!opened){
 			try {
-				System.out.println("Enter a file to open");
+				System.out.println("Open what?");
 				fileName = in.nextLine();
 				FileReader fileReader = new FileReader(new File(fileName));
 				String line = "";
 				//a BufferedReader enables us to read teh file one line at a time
 				BufferedReader br = new BufferedReader(fileReader);
 				while ((line = br.readLine()) != null) {
+					String[] param = line.split(",");
 					content.add(line);
-					/*
-					 * useful later:
-					 * split only a comma that has an even number of quotes ahead of it
-		 String[] row = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)", -1);
-					 */
+					
 				}
 				br.close();
 				opened = true;
