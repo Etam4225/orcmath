@@ -32,7 +32,15 @@ public class CatalogMaker {
 		int counter = 0;
 		Scanner n = new Scanner(System.in);
 		CatalogMaker BabyStuff = new CatalogMaker();
+		
+		System.out.println("Please type a name for baby.");
+		String X = n.nextLine();
+		System.out.println("Now type race.");
+		String Y = n.nextLine();
+		BabyStuff.addNewItem(X, Y, "America", "Male");
+		
 		System.out.println(BabyStuff.getCSVContent());
+		
 		BabyStuff.testSaveContent("test1.csv");
 		
 		/*System.out.println("Please enter: name ");
@@ -43,6 +51,12 @@ public class CatalogMaker {
 	
 	public void addNewItem(String name, String race, String country, String gender) {
 		List.add(new Babies(name, race, country, gender));
+		System.out.println("Item added.");
+		getCSVContent();
+	}
+	
+	public void addBaby(Babies baby) {
+		List.add(baby);
 		System.out.println("Item added.");
 		getCSVContent();
 	}
@@ -60,10 +74,18 @@ public class CatalogMaker {
 		}    
 	}
 	
-	private static List<String> testFileLoading() {
+	public ArrayList<Babies> getList() {
+		return List;
+	}
+	
+	public void save() {
+		
+	}
+
+	private static ArrayList<String> testFileLoading() {
 		Scanner in = new Scanner(System.in);
 		String fileName = "";
-		List<String> content = new ArrayList<String>();
+		ArrayList<String> content = new ArrayList<String>();
 		//use this boolean to control the while loop. The user should have multiple chances to enter a correct filename
 		boolean opened = false;
 		while(!opened){
