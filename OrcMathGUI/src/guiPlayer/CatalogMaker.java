@@ -19,11 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CatalogueMaker {
+public class CatalogMaker {
 	
 	private ArrayList<Babies> List;
 
-	public CatalogueMaker() {
+	public CatalogMaker() {
 		List = new ArrayList<Babies>();
 		List.add(new Babies("john", "asian", "america", "male"));
 		List.add(new Babies("ssjdshtrubg", "white", "slkja", "female"));
@@ -42,7 +42,7 @@ public class CatalogueMaker {
 	public static void main(String[] args) {
 		int counter = 0;
 		Scanner n = new Scanner(System.in);
-		CatalogueMaker BabyStuff = new CatalogueMaker();
+		CatalogMaker BabyStuff = new CatalogMaker();
 		System.out.println(BabyStuff.getCSVContent());
 		BabyStuff.testSaveContent("test1.csv");
 		
