@@ -8,17 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-package guiPlayer;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class CatalogMaker {
 	
 	private ArrayList<Babies> List;
@@ -87,8 +76,7 @@ public class CatalogMaker {
 				BufferedReader br = new BufferedReader(fileReader);
 				while ((line = br.readLine()) != null) {
 					String[] param = line.split(",");
-					content.add(line);
-					
+					content.add(line);	
 				}
 				br.close();
 				opened = true;
