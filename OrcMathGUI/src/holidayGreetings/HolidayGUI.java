@@ -1,6 +1,9 @@
 package holidayGreetings;
 
+import java.awt.Color;
+
 import guiTeacher.GUIApplication;
+import guiTeacher.components.StyledComponent;
 
 public class HolidayGUI extends GUIApplication{
 	
@@ -23,7 +26,5 @@ public class HolidayGUI extends GUIApplication{
 		holiday = new HolidayGUI(800, 550);
 		Thread go = new Thread(holiday);
 		go.start();
-
 	}
-
 }

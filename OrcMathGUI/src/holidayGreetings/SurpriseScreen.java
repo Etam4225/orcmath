@@ -1,5 +1,6 @@
 package holidayGreetings;
 
+import java.awt.Color;
 import java.util.List;
 
 import guiTeacher.components.Action;

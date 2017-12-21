@@ -14,7 +14,7 @@ public class GreetingScreen extends FullFunctionScreen {
 
 	public GreetingScreen(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
+//		StyledComponent.setBackgroundColor(Color.GREEN);
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
@@ -23,13 +23,13 @@ public class GreetingScreen extends FullFunctionScreen {
 		area.setBackgroundColor(Color.red);
 		area.setCustomTextColor(Color.RED);
 		viewObjects.add(area);
-		
 		change = new Button(50,50,100,100, "CLICK ME", new Action() {
 			
 			public void act() {
 				HolidayGUI.holiday.setScreen(HolidayGUI.screen2);
 			}
 		});
+		change.setBackgroundColor(Color.green);
 		viewObjects.add(change);
 	}
 
