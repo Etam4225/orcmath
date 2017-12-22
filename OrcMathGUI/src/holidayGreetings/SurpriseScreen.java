@@ -6,6 +6,7 @@ import java.util.List;
 import guiTeacher.components.Action;
 import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.Button;
+import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -22,22 +23,25 @@ public class SurpriseScreen extends FullFunctionScreen{
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		fireworks = new AnimatedComponent(150, 150, 100, 100);
-		fireworks.addSequence("resources/fireworks.png", 200, 0, 0, 100, 100, 5);
+		setBackground(Color.BLACK);
+		Graphic gym = new Graphic(0, 0, 800, 550, "resources/img.png");
+		fireworks = new AnimatedComponent(0, 0, 128, 96);
+		fireworks.addSequence("resources/fireworks.png", 200, 0, 0, 128, 96, 6);
 		Thread run = new Thread(fireworks);
 		run.start();
 		viewObjects.add(fireworks);
 		
-		fireworks1 = new AnimatedComponent(450, 150, 100, 110);
-		fireworks1.addSequence("resources/fireworks.png", 200, 0, 0, 100, 110, 5);
+		fireworks1 = new AnimatedComponent(650, 0, 128, 96);
+		fireworks1.addSequence("resources/fireworks.png", 200, 0, 132, 128, 96, 6);
 		Thread run1 = new Thread(fireworks1);
 		run1.start();
 		viewObjects.add(fireworks1);
-		
-		area = new TextArea(250, 250, 200, 200, "Your New Year's resolution should be to go to the gym!");
+		viewObjects.add(gym);
+		area = new TextArea(250, 250, 200, 200, "Your chicken legs will not be tolerated this year!");
+		area.setBackgroundColor(Color.gray);
 		viewObjects.add(area);
 		
-		change = new Button(50,50,100,100, "Go Back", new Action() {
+		change = new Button(450,450,100,100, "Go Back", new Action() {
 			
 			public void act() {
 				HolidayGUI.holiday.setScreen(HolidayGUI.screen1);
