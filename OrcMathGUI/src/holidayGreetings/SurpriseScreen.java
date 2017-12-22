@@ -21,8 +21,8 @@ public class SurpriseScreen extends FullFunctionScreen{
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		fireworks = new AnimatedComponent(250, 265, 29, 34);
-		fireworks.addSequence("resources/mario.png", 150, 234, 50, 29, 34, 3);
+		fireworks = new AnimatedComponent(150, 150, 100, 110);
+		fireworks.addSequence("resources/fireworks.png", 200, 0, 0, 100, 110, 5);
 		Thread run = new Thread(fireworks);
 		run.start();
 		viewObjects.add(fireworks);
