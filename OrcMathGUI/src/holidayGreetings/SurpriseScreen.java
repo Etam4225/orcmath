@@ -37,8 +37,9 @@ public class SurpriseScreen extends FullFunctionScreen{
 		run1.start();
 		viewObjects.add(fireworks1);
 		viewObjects.add(gym);
-		area = new TextArea(250, 250, 200, 200, "Your chicken legs will not be tolerated this year!");
-		area.setBackgroundColor(Color.gray);
+		area = new TextArea(220, 260, 450, 500, "NO CHICKEN LEGS THIS YEAR!");
+		area.setCustomTextColor(Color.RED);
+		area.setFont(getFont().deriveFont(30f));
 		viewObjects.add(area);
 		
 		change = new Button(450,450,100,100, "Go Back", new Action() {
