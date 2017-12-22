@@ -15,17 +15,24 @@ public class SurpriseScreen extends FullFunctionScreen{
 	private TextArea area;
 	private Button change;
 	private AnimatedComponent fireworks;
+	private AnimatedComponent fireworks1;
 	
 	public SurpriseScreen(int width, int height) {
 		super(width, height);
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		fireworks = new AnimatedComponent(150, 150, 100, 110);
-		fireworks.addSequence("resources/fireworks.png", 200, 0, 0, 100, 110, 5);
+		fireworks = new AnimatedComponent(150, 150, 100, 100);
+		fireworks.addSequence("resources/fireworks.png", 200, 0, 0, 100, 100, 5);
 		Thread run = new Thread(fireworks);
 		run.start();
 		viewObjects.add(fireworks);
+		
+		fireworks1 = new AnimatedComponent(450, 150, 100, 110);
+		fireworks1.addSequence("resources/fireworks.png", 200, 0, 0, 100, 110, 5);
+		Thread run1 = new Thread(fireworks1);
+		run1.start();
+		viewObjects.add(fireworks1);
 		
 		area = new TextArea(250, 250, 200, 200, "Your New Year's resolution should be to go to the gym!");
 		viewObjects.add(area);

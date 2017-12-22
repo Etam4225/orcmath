@@ -19,7 +19,7 @@ public class GreetingScreen extends FullFunctionScreen {
 
 	public void initAllObjects(List<Visible> viewObjects) {
 		StyledComponent.setButtonOutline(true);
-		area = new TextArea(250, 250, 200, 200, "It's New Years! If you want a special message, click the button!");
+		area = new TextArea(250, 250, 200, 200, "It's New Years! Check for your New Years resolution!");
 		area.setBackgroundColor(Color.red);
 		area.setCustomTextColor(Color.RED);
 		viewObjects.add(area);
