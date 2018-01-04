@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import guiTeacher.components.Action;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
@@ -72,11 +73,34 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		buttons = new ButtonInterfaceEthan[numberOfButtons];
 		Color[] color = {Color.black, Color.green, Color.yellow, Color.red, Color.blue};
 		for(int i = 0; i < numberOfButtons; i++) {
-			ButtonInterfaceEthan b = getAButton();
+			final ButtonInterfaceEthan b = getAButton();
 			buttons[i] = b;
 			  b.setColor(color[i]);
-			  b.setX(150);
-			  b.setY(150);
+			  b.setX(50 + i * 50);
+			  b.setY(50 + i * 50);
+			  b.setAction(new Action() {
+				
+				@Override
+				public void act() {
+					if(acceptInput) {
+						Thread changeButton = new Thread(new Runnable() {
+							
+							@Override
+							public void run() {
+								b.highlight();
+								try {
+									Thread.sleep(500);
+								}catch(InterruptedException e){
+									e.printStackTrace();
+								}
+								b.dim();
+							}
+						});
+						changeButton.start();
+					}
+					
+				}
+			});
 		}
 		
 	}
