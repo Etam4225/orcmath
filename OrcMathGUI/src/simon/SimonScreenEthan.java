@@ -162,7 +162,32 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 	}
 
 	private void playSequence() {
-	
+		ButtonInterfaceEthan b = null;
+		for(int i = 0; i < move.size(); i++) {
+			if(b != null) {
+				b.dim();
+			}
+			b = move.get(i).getButton();
+			b.highlight();
+			int sleepTime = 1000 - (((rNum * 20 + 16) * 2)/4);
+			if(sleepTime < 0) {
+				sleepTime = (((rNum * 20 + 16) * 2)/4) * 15;
+			}
+			Thread sleep = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					try {
+						Thread.sleep(500);
+					}catch(InterruptedException e){
+						e.printStackTrace();
+					}
+				}
+			});
+			sleep.start();
+			
+		}
+		b.dim();
 	}
 
 }
