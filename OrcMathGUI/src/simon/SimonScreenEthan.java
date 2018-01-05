@@ -18,6 +18,7 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 	private boolean acceptInput;
 	private TextLabel response;
 	private int lastButton;
+	private int sequenceIndex;
 	
 	public SimonScreenEthan(int width, int height) {
 		super(width, height);
@@ -97,15 +98,22 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 							}
 						});
 						changeButton.start();
+						if(b == move.get(sequenceIndex).getButton()) {
+							sequenceIndex++;
+						}else {
+							progress.gameover();
+						}
+						if(sequenceIndex == move.size()) {
+							Thread nextRound = new Thread(SimonScreenEthan.this); 
+						    nextRound.start();
+						}
 					}
-					
 				}
 			});
 		}
 		
 	}
-	
-	
+
 	/**
 	Placeholder until partner finishes implementation of ProgressInterface
 	*/
@@ -116,9 +124,45 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 
 	@Override
 	public void run() {
+		response.setText("");
+		nextRound();
+		
+		
+	}
+
+	private void changeText(String string) {
+		Thread sleep = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				response.setText(string);
+				try {
+					Thread.sleep(100);
+				}catch(InterruptedException e){
+					e.printStackTrace();
+				}
+			}
+		});
+		sleep.start();
+	}
+
+	private void nextRound() {
+		acceptInput = false;
+		rNum++;
+		move.add(randomMove());
 		progress.displayRound(rNum);
-		
-		
+		progress.setRound(rNum);
+		progress.setSequenceSize(sequenceIndex);
+		changeText("Simon's Turn.");
+		response.setText("");
+		playSequence();
+		changeText("Your Turn!");
+		acceptInput = true;
+		sequenceIndex = 0;
+	}
+
+	private void playSequence() {
+	
 	}
 
 }
