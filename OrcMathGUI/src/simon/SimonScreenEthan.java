@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import guiTeacher.components.Action;
+import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 
 public class SimonScreenEthan extends ClickableScreen implements Runnable{
 
-	private ProgressInterfaceEthan progress;
+	private TextArea progress;
 	private ArrayList<MoveInterfaceEthan> move;
 	private ButtonInterfaceEthan[] buttons;
 	private int rNum;
@@ -33,7 +34,6 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		for(ButtonInterfaceEthan b: buttons){ 
 		    viewObjects.add(b); 
 		}
-		progress = getProgress();
 		response = new TextLabel(130,230,300,40,"Let's play Simon!");
 		move = new ArrayList<MoveInterfaceEthan>();
 		//add 2 moves to start
@@ -74,7 +74,7 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		buttons = new ButtonInterfaceEthan[numberOfButtons];
 		Color[] color = {Color.black, Color.green, Color.yellow, Color.red, Color.blue};
 		for(int i = 0; i < numberOfButtons; i++) {
-			final ButtonInterfaceEthan b = getAButton();
+			final ButtonInterfaceEthan b = new ButtonEthan(0, 0, 1, 1, "", null);
 			buttons[i] = b;
 			  b.setColor(color[i]);
 			  b.setX(50 + i * 50);
@@ -101,7 +101,7 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 						if(b == move.get(sequenceIndex).getButton()) {
 							sequenceIndex++;
 						}else {
-							progress.gameover();
+							progress.setText("Game Over");
 						}
 						if(sequenceIndex == move.size()) {
 							Thread nextRound = new Thread(SimonScreenEthan.this); 
@@ -114,13 +114,16 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		
 	}
 
+	private ButtonInterfaceEthan getAButton() {
+		
+		int rand = ((int) Math.random()*buttons.length)+1;
+		return buttons[rand];
+		
+	}
+
 	/**
 	Placeholder until partner finishes implementation of ProgressInterface
 	*/
-	private ButtonInterfaceEthan getAButton() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void run() {
@@ -150,9 +153,11 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		acceptInput = false;
 		rNum++;
 		move.add(randomMove());
-		progress.displayRound(rNum);
+		/*progress.displayRound(rNum);
 		progress.setRound(rNum);
-		progress.setSequenceSize(sequenceIndex);
+		progress.setSequenceSize(sequenceIndex);*/
+		progress = new TextArea(40, 40, 100, 100, "Progress");
+		progress.setText("Rounds: "+ rNum+" Sequence: "+ sequenceIndex);
 		changeText("Simon's Turn.");
 		response.setText("");
 		playSequence();

@@ -1,5 +1,6 @@
 package simon;
 
+import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 
 public interface ProgressInterfaceEthan extends Visible {
