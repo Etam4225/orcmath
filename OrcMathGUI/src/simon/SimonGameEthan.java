@@ -15,14 +15,14 @@ public class SimonGameEthan extends GUIApplication {
 
 	@Override
 	public void initScreen() {
-		SimonScreenEthan screen = new  SimonScreenEthan(getWidth(), getHeight());
+		SimonScreenEthan screen = new SimonScreenEthan(getWidth(), getHeight());
 		setScreen(screen);
 
 	}
 	
 	public static void main(String[] args) {
 		game = new SimonGameEthan(850,500);
-		Thread runner = new Thread();
+		Thread runner = new Thread(game);
 		runner.start();
 	}
 }

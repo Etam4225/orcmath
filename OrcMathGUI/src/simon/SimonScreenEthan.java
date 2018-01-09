@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import guiTeacher.components.Action;
+import guiTeacher.components.Button;
 import guiTeacher.components.TextArea;
-import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 
@@ -17,7 +17,7 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 	private ButtonInterfaceEthan[] buttons;
 	private int rNum;
 	private boolean acceptInput;
-	private TextLabel response;
+	private TextArea response;
 	private int lastButton;
 	private int sequenceIndex;
 	
@@ -30,11 +30,32 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		//CODE THAT WORKS
+		
+		/*
+		
+		 Color[] color = {Color.black, Color.green, Color.yellow, Color.red, Color.blue};
+		for(int i = 0; i < 5; i++) {
+			Button button = new Button(250 + i * 50, 150, 50, 50, "name", null);
+			button.setBackground(color[i]);
+			button.setText("changed");
+			viewObjects.add(button);
+		}
+		TextArea response = new TextArea(250, 75, 150, 150, "stuff goes here");
+		viewObjects.add(response); 
+		
+		*/
+		
+		
+		
 		addButtons();
 		for(ButtonInterfaceEthan b: buttons){ 
 		    viewObjects.add(b); 
-		}
-		response = new TextLabel(130,230,300,40,"Let's play Simon!");
+		} 
+		
+		
+		/*
+		response = new TextArea(130,230,300,40,"Let's play Simon!");
 		move = new ArrayList<MoveInterfaceEthan>();
 		//add 2 moves to start
 		lastButton = -1;
@@ -43,6 +64,8 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		rNum = 0;
 		viewObjects.add(progress);
 		viewObjects.add(response);
+		
+		*/
 
 	}
 
@@ -74,11 +97,11 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		buttons = new ButtonInterfaceEthan[numberOfButtons];
 		Color[] color = {Color.black, Color.green, Color.yellow, Color.red, Color.blue};
 		for(int i = 0; i < numberOfButtons; i++) {
-			final ButtonInterfaceEthan b = new ButtonEthan(0, 0, 1, 1, "", null);
+			final ButtonInterfaceEthan b = new ButtonEthan(0, 0, 50, 50, "", null, color[i]);
 			buttons[i] = b;
 			  b.setColor(color[i]);
-			  b.setX(50 + i * 50);
-			  b.setY(50 + i * 50);
+			  b.setX(250 + i *25 + i * 50);
+			  b.setY(150);
 			  b.setAction(new Action() {
 				
 				@Override
@@ -127,8 +150,8 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 
 	@Override
 	public void run() {
-		response.setText("");
-		nextRound();
+		//response.setText("");
+		//nextRound();
 		
 		
 	}

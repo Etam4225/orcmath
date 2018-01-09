@@ -40,6 +40,6 @@ public class ProgressEthan extends Component implements ProgressInterfaceEthan{
 
 	@Override
 	public void update(Graphics2D g) {
-		E
+		
 	}
 }
