@@ -57,14 +57,14 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		response = new TextArea(250,50,150,150,"Simon's turn");
 		viewObjects.add(response);
 		
-		
+		/*
 		move = new ArrayList<MoveInterfaceEthan>();
 		lastButton = -1;
 		move.add(randomMove());
 		move.add(randomMove());
 		move.add(randomMove());
 		rNum = 0;
-		viewObjects.add(progress);
+		viewObjects.add(progress);*/
 		
 		
 		
@@ -80,7 +80,7 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 	}
 	
 	private MoveInterfaceEthan getMove(int bIndex) {
-		MoveInterfaceEthan choice = new MoveEthan(bIndex);
+		MoveInterfaceEthan choice = new MoveEthan(bIndex, buttons);
 //		choice.getButton(bIndex).highlight();
 	    return choice;
 	}
