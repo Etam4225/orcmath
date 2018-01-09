@@ -2,17 +2,17 @@ package simon;
 
 public class MoveEthan implements MoveInterfaceEthan{
 	
-	private ButtonInterfaceEthan[] buttons;
-	private int idx;
+	private ButtonInterfaceEthan b;
 	
-	public MoveEthan(int idx, ButtonInterfaceEthan[] arrayList)
+	public MoveEthan(ButtonInterfaceEthan b)
 	{
-		this.idx = idx;
-		this.buttons = arrayList;
+		this.b = b;
 	}
-	
-	public ButtonInterfaceEthan getButton(int idx) {
-		return buttons[this.idx];
+
+	@Override
+	public ButtonInterfaceEthan getButton() {
+		
+		return b;
 	}
 
 }

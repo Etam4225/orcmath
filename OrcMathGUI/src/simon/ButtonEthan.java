@@ -11,6 +11,7 @@ public class ButtonEthan extends Button implements ButtonInterfaceEthan{
 	
 	private Graphics2D g;
 	private Color color;
+	private boolean highlight;
 	
 	public ButtonEthan(int x, int y, int w, int h, String text, Action action, Color color) {
 		super(x, y, w, h, text, action);
@@ -28,11 +29,13 @@ public class ButtonEthan extends Button implements ButtonInterfaceEthan{
 	@Override
 	public void highlight() {
 		g.setColor(g.getColor().brighter());
+		update();
 	}
 
 	@Override
 	public void dim() {
 		g.setColor(g.getColor().darker());
+		update();
 	}
 
 }
