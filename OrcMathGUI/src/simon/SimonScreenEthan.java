@@ -99,7 +99,7 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		for(int i = 0; i < numberOfButtons; i++) {
 			final ButtonInterfaceEthan b = new ButtonEthan(0, 0, 50, 50, "", null, color[i]);
 			buttons[i] = b;
-			  b.setColor(color[i]);
+			  b.update();
 			  b.setX(250 + i *25 + i * 50);
 			  b.setY(150);
 			  b.setAction(new Action() {

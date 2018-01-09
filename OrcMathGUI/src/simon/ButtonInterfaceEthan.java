@@ -6,8 +6,6 @@ import guiTeacher.components.Action;
 import guiTeacher.interfaces.Clickable;
 
 public interface ButtonInterfaceEthan extends Clickable {
-
-	void setColor(Color color);
 	
 	void setAction(Action a);
 

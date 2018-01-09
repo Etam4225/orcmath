@@ -24,10 +24,6 @@ public class ButtonEthan extends Button implements ButtonInterfaceEthan{
 		g.fillRect(getX(), getY(), getWidth(), getHeight());
 		
 	}
-	@Override
-	public void setColor(Color color) {
-		update();
-	}
 
 	@Override
 	public void highlight() {
