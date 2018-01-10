@@ -42,4 +42,10 @@ public class ProgressEthan extends Component implements ProgressInterfaceEthan{
 	public void update(Graphics2D g) {
 		
 	}
+
+	@Override
+	public void setText(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 }

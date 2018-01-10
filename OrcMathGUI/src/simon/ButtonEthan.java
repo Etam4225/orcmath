@@ -3,39 +3,48 @@ package simon;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 
 public class ButtonEthan extends Button implements ButtonInterfaceEthan{
 	
-	private Graphics2D g;
 	private Color color;
 	private boolean highlight;
 	
-	public ButtonEthan(int x, int y, int w, int h, String text, Action action, Color color) {
-		super(x, y, w, h, text, action);
-		this.color = color;
+	public ButtonEthan(int x, int y, int w, int h, String text, Action action) {
+		super(x, y, w, h, "", action);
+		highlight = false;
 	}
 	
 	public void drawButton(Graphics2D g, boolean hover) {
-		this.g = g; 
-		g.drawRect(getX(), getY(), getWidth(), getHeight());
-		g.setColor(this.color);
-		g.fillRect(getX(), getY(), getWidth(), getHeight());
-		
+		if(highlight){
+			g.setColor(color.gray);
+			g.fillRect(0, 0, getWidth(), getHeight());
+		}else{
+			g.setColor(color);
+			g.fillRect(0, 0, getWidth(), getHeight());
+		}
 	}
-
+	
 	@Override
 	public void highlight() {
-		g.setColor(g.getColor().brighter());
-		update();
+		highlight = true;
+		update();	
 	}
 
 	@Override
 	public void dim() {
-		g.setColor(g.getColor().darker());
+		highlight = false;
 		update();
+	}
+
+	@Override
+	public void setColor(Color color) {
+		this.color = color;
+		update();
+		
 	}
 
 }

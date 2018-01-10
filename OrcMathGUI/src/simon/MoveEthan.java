@@ -11,7 +11,6 @@ public class MoveEthan implements MoveInterfaceEthan{
 
 	@Override
 	public ButtonInterfaceEthan getButton() {
-		
 		return b;
 	}
 

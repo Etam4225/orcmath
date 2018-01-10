@@ -13,4 +13,6 @@ public interface ButtonInterfaceEthan extends Clickable {
 
 	void dim();
 
+	void setColor(Color color);
+
 }

@@ -12,4 +12,6 @@ public interface ProgressInterfaceEthan extends Visible {
 	void setRound(int round);
 	
 	void setSequenceSize(int size);
+
+	void setText(String string);
 }

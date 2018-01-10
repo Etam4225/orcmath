@@ -2,6 +2,7 @@ package simon;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import guiTeacher.components.Action;
@@ -12,7 +13,7 @@ import guiTeacher.userInterfaces.ClickableScreen;
 
 public class SimonScreenEthan extends ClickableScreen implements Runnable{
 
-	private TextArea progress;
+	private ProgressInterfaceEthan progress;
 	private TextArea response;
 	private ArrayList<MoveInterfaceEthan> move;
 	private ButtonInterfaceEthan[] buttons;
@@ -32,28 +33,12 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 	public void initAllObjects(List<Visible> viewObjects) {
 		//CODE THAT WORKS (displays)
 		
-		/*
-		
-		 Color[] color = {Color.black, Color.green, Color.yellow, Color.red, Color.blue};
-		for(int i = 0; i < 5; i++) {
-			Button button = new Button(250 + i * 50, 150, 50, 50, "name", null);
-			button.setBackground(color[i]);
-			button.setText("changed");
-			viewObjects.add(button);
-		}
-		TextArea response = new TextArea(250, 75, 150, 150, "stuff goes here");
-		viewObjects.add(response); 
-		
-		*/
-		
-		
-		
 		addButtons();
 		for(ButtonInterfaceEthan b: buttons){ 
 		    viewObjects.add(b); 
 		} 
 		
-//		progress = getProgress();
+		progress = getProgress();
 		response = new TextArea(250,50,150,150,"Simon's turn");
 		viewObjects.add(response);
 		
@@ -63,45 +48,44 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		move.add(randomMove());
 		move.add(randomMove());
 		rNum = 0;
-//		viewObjects.add(progress);
+		viewObjects.add(progress);
 		
 		
 		
 
 	}
 
-	private MoveInterfaceEthan randomMove() {
+	public MoveInterfaceEthan randomMove() {
 		ButtonInterfaceEthan b = null;
 		  int bIndex = (int)(Math.random()*buttons.length);
 		    while(bIndex == lastButton){
 		        bIndex = (int)(Math.random()*buttons.length);
 		    }
 		    b = buttons[bIndex];
+		    lastButton = bIndex;
 		    return getMove(b);
 	}
 	
-	private MoveInterfaceEthan getMove(ButtonInterfaceEthan b) {
+	public MoveInterfaceEthan getMove(ButtonInterfaceEthan b) {
 		return new MoveEthan(b);
 	}
 	
-	
-	/*
-	private ProgressInterfaceEthan getProgress() {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
+	public ProgressInterfaceEthan getProgress() {
+		return new ProgressEthan(50, 350, 100, 100);
+	}
 
 	private void addButtons() {
 		int numberOfButtons = 5;
 		buttons = new ButtonInterfaceEthan[numberOfButtons];
 		Color[] color = {Color.black, Color.green, Color.yellow, Color.red, Color.blue};
 		for(int i = 0; i < numberOfButtons; i++) {
-			final ButtonInterfaceEthan b = new ButtonEthan(0, 0, 50, 50, "", null, color[i]);
-			buttons[i] = b;
-			  b.update();
-			  b.setX(250 + i *25 + i * 50);
-			  b.setY(150);
-			  b.setAction(new Action() {
+			buttons[i] = getAButton();
+			buttons[i].setColor(color[i]);
+			buttons[i].setX(250 + i *25 + i * 50);
+			buttons[i].setY(150);
+			final ButtonInterfaceEthan b = buttons[i];
+			b.dim();
+			b.setAction(new Action() {
 				
 				@Override
 				public void act() {
@@ -112,7 +96,7 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 							public void run() {
 								b.highlight();
 								try {
-									Thread.sleep(500);
+									Thread.sleep(400);
 								}catch(InterruptedException e){
 									e.printStackTrace();
 								}
@@ -127,22 +111,23 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 						}
 						if(sequenceIndex == move.size()) {
 							Thread nextRound = new Thread(SimonScreenEthan.this); 
-						    nextRound.start();
+						    try {
+								Thread.sleep(1000); //pause so user move doesn't collide with generation of moves
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							nextRound.start();
 						}
-					}
+					}	
 				}
 			});
 		}
 		
 	}
 
-	public TextArea getProgress() {
-		return progress;
-	}
-
 	private ButtonInterfaceEthan getAButton() {
-		int rand = ((int) Math.random()*buttons.length)+1;
-		return buttons[rand];
+		return new ButtonEthan(0, 0, 75, 75, "", null);
 		
 	}
 
@@ -152,8 +137,8 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 
 	@Override
 	public void run() {
-//		response.setText("");
-//		nextRound();
+		response.setText("");
+		nextRound();
 		
 		
 	}
@@ -178,11 +163,10 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		acceptInput = false;
 		rNum++;
 		move.add(randomMove());
-		/*progress.displayRound(rNum);
-		progress.setRound(rNum);
-		progress.setSequenceSize(sequenceIndex);*/
-		progress = new TextArea(40, 40, 100, 100, "Progress");
-		progress.setText("Rounds: "+ rNum+" Sequence: "+ sequenceIndex);
+//		progress.displayRound(rNum);
+//		progress.setRound(rNum);
+//		progress.setSequenceSize(sequenceIndex);
+//		progress.setText("Rounds: "+ rNum+" Sequence: "+ sequenceIndex);
 		changeText("Simon's Turn.");
 		response.setText("");
 		playSequence();
@@ -199,23 +183,12 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 			}
 			b = move.get(i).getButton();
 			b.highlight();
-			int sleepTime = 1000 - (((rNum * 20 + 16) * 2)/4);
-			if(sleepTime < 0) {
-				sleepTime = (((rNum * 20 + 16) * 2)/4) * 15;
-			}
-			Thread sleep = new Thread(new Runnable() {
-				
-				@Override
-				public void run() {
-					try {
-						Thread.sleep(500);
-					}catch(InterruptedException e){
-						e.printStackTrace();
-					}
-				}
-			});
-			sleep.start();
-			
+			int sleepTime = (1000 - (1 + i * 10 ));
+			try {
+					Thread.sleep(sleepTime);
+				}catch(InterruptedException e){
+					e.printStackTrace();
+				}			
 		}
 		b.dim();
 	}
