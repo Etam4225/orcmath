@@ -111,13 +111,8 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 							acceptInput = false;
 						}
 						if(sequenceIndex == move.size()) {
-							Thread nextRound = new Thread(SimonScreenEthan.this); 
-						    try {
-								Thread.sleep(1000); //pause so user move doesn't collide with generation of moves
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+							
+							Thread nextRound = new Thread(SimonScreenEthan.this);
 							nextRound.start();
 						}
 					}	
