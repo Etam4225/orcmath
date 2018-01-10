@@ -77,7 +77,7 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 	private void addButtons() {
 		int numberOfButtons = 5;
 		buttons = new ButtonInterfaceEthan[numberOfButtons];
-		Color[] color = {Color.black, Color.green, Color.yellow, Color.red, Color.blue};
+		Color[] color = {Color.CYAN, Color.green, Color.yellow, Color.red, Color.blue};
 		for(int i = 0; i < numberOfButtons; i++) {
 			buttons[i] = getAButton();
 			buttons[i].setColor(color[i]);
@@ -107,7 +107,8 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 						if(b == move.get(sequenceIndex).getButton()) {
 							sequenceIndex++;
 						}else {
-							progress.setText("Game Over");
+							progress.gameover();
+							acceptInput = false;
 						}
 						if(sequenceIndex == move.size()) {
 							Thread nextRound = new Thread(SimonScreenEthan.this); 
@@ -131,16 +132,10 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		
 	}
 
-	/**
-	Placeholder until partner finishes implementation of ProgressInterface
-	*/
-
 	@Override
 	public void run() {
 		response.setText("");
 		nextRound();
-		
-		
 	}
 
 	private void changeText(String string) {
@@ -163,10 +158,8 @@ public class SimonScreenEthan extends ClickableScreen implements Runnable{
 		acceptInput = false;
 		rNum++;
 		move.add(randomMove());
-//		progress.displayRound(rNum);
-//		progress.setRound(rNum);
-//		progress.setSequenceSize(sequenceIndex);
-//		progress.setText("Rounds: "+ rNum+" Sequence: "+ sequenceIndex);
+		progress.setRound(rNum);
+		progress.setSequenceSize(move.size());
 		changeText("Simon's Turn.");
 		response.setText("");
 		playSequence();

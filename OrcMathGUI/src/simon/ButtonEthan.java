@@ -20,7 +20,7 @@ public class ButtonEthan extends Button implements ButtonInterfaceEthan{
 	
 	public void drawButton(Graphics2D g, boolean hover) {
 		if(highlight){
-			g.setColor(color.gray);
+			g.setColor(color.darker());
 			g.fillRect(0, 0, getWidth(), getHeight());
 		}else{
 			g.setColor(color);
